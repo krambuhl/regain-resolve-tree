@@ -1,0 +1,55 @@
+{
+  "type": "tag",
+  "tagName": "div",
+  "attrs": [
+    {
+      "type": "attr",
+      "name": [
+        {
+          "type": "text",
+          "data": "data-"
+        },
+        {
+          "path": "propName",
+          "type": "variable"
+        }
+      ],
+      "data": [
+        {
+          "path": "valName",
+          "type": "variable"
+        }
+      ]
+    },
+    {
+      "type": "attr",
+      "name": "class",
+      "data": "block"
+    },
+    {
+      "type": "attr",
+      "name": "data-hex",
+      "data": [
+        {
+          "type": "text",
+          "data": "#"
+        },
+        {
+          "path": "@data.hex",
+          "type": "variable"
+        }
+      ]
+    }
+  ],
+  "children": [
+    {
+      "type": "text",
+      "data": [
+        {
+          "path": "@data.name",
+          "type": "variable"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+<div>
+  <TestBlock tagName={tag} data={colors|first} />
+  <TestComponent id="colors">
+    <TestBlock data={colors|last} />
+    <a href="/colors">Read More</a>
+  </TestComponent>
+  <Each data={colors} as="color">
+    <TestBlock data={color} />
+    <Defined data={color.slug}>
+      <a href="/colors/{color.slug}">Read More</a>
+    </Defined>
+  </Each>
+  <script src={scripts.main}>
+    function hello(str) { }
+  </script>
+</div>

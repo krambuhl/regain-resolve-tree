@@ -1,0 +1,200 @@
+{
+  "type": "tag",
+  "tagName": "div",
+  "children": [
+    {
+      "type": "component",
+      "name": "TestBlock",
+      "attrs": [
+        {
+          "type": "attr",
+          "name": "tagName",
+          "data": [
+            {
+              "path": "tag",
+              "type": "variable"
+            }
+          ]
+        },
+        {
+          "type": "attr",
+          "name": "data",
+          "data": [
+            {
+              "path": "colors",
+              "filters": [
+                {
+                  "type": "filter",
+                  "name": "first"
+                }
+              ],
+              "type": "variable"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "component",
+      "name": "TestComponent",
+      "attrs": [
+        {
+          "type": "attr",
+          "name": "id",
+          "data": "colors"
+        }
+      ],
+      "children": [
+        {
+          "type": "component",
+          "name": "TestBlock",
+          "attrs": [
+            {
+              "type": "attr",
+              "name": "data",
+              "data": [
+                {
+                  "path": "colors",
+                  "filters": [
+                    {
+                      "type": "filter",
+                      "name": "last"
+                    }
+                  ],
+                  "type": "variable"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "tag",
+          "tagName": "a",
+          "attrs": [
+            {
+              "type": "attr",
+              "name": "href",
+              "data": "/colors"
+            }
+          ],
+          "children": [
+            {
+              "type": "text",
+              "data": "Read More"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "component",
+      "name": [
+        {
+          "path": "component",
+          "type": "variable"
+        }
+      ],
+      "attrs": [
+        {
+          "type": "attr",
+          "name": "data",
+          "data": [
+            {
+              "path": "colors",
+              "type": "variable"
+            }
+          ]
+        },
+        {
+          "type": "attr",
+          "name": "as",
+          "data": "color"
+        }
+      ],
+      "children": [
+        {
+          "type": "component",
+          "name": "TestBlock",
+          "attrs": [
+            {
+              "type": "attr",
+              "name": "data",
+              "data": [
+                {
+                  "path": "color",
+                  "type": "variable"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "component",
+          "name": "Defined",
+          "attrs": [
+            {
+              "type": "attr",
+              "name": "data",
+              "data": [
+                {
+                  "path": "color.slug",
+                  "type": "variable"
+                }
+              ]
+            }
+          ],
+          "children": [
+            {
+              "type": "tag",
+              "tagName": "a",
+              "attrs": [
+                {
+                  "type": "attr",
+                  "name": "href",
+                  "data": [
+                    {
+                      "type": "text",
+                      "data": "/colors/"
+                    },
+                    {
+                      "path": "color.slug",
+                      "type": "variable"
+                    }
+                  ]
+                }
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "data": "Read More"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "script",
+      "name": "script",
+      "attrs": [
+        {
+          "type": "attr",
+          "name": "src",
+          "data": [
+            {
+              "path": "scripts.main",
+              "type": "variable"
+            }
+          ]
+        }
+      ],
+      "children": [
+        {
+          "data": "\n    function hello(str) { }\n  ",
+          "type": "text"
+        }
+      ]
+    }
+  ]
+}

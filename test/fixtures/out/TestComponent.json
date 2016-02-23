@@ -1,0 +1,17 @@
+{
+  "type": "tag",
+  "tagName": "div",
+  "attrs": [
+    {
+      "type": "attr",
+      "name": "class",
+      "data": "component"
+    }
+  ],
+  "children": [
+    {
+      "type": "helper",
+      "name": "Children"
+    }
+  ]
+}

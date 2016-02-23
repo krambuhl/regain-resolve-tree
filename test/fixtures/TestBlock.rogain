@@ -1,0 +1,1 @@
+<div data-{propName}={valName} class="block" data-hex="#{@data.hex}">{@data.slug}</div>

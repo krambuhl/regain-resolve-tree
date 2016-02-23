@@ -1,0 +1,15 @@
+{
+  "type": "tag",
+  "name": "div",
+  "attribs": {
+    "data-{propName}": "{valName}",
+    "class": "block",
+    "data-hex": "#{@data.hex}"
+  },
+  "children": [
+    {
+      "data": "{@data.name}",
+      "type": "text"
+    }
+  ]
+}
