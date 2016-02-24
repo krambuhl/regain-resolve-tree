@@ -4,7 +4,7 @@ var config = new RogainConfig();
 
 config.helpers.register(require('rogain-core-helpers'));
 config.helpers.register('Children', function(tree, props) {
-  console.log('children', tree);
+  // console.log('children', tree);
   if (props['@children']) {
     return props['@children'];
   }

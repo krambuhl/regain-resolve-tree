@@ -81,8 +81,13 @@
       ]
     },
     {
-      "type": "helper",
-      "name": "Each",
+      "type": "component",
+      "name": [
+        {
+          "path": "component",
+          "type": "variable"
+        }
+      ],
       "attrs": [
         {
           "type": "attr",

@@ -46,7 +46,7 @@
       "type": "text",
       "data": [
         {
-          "path": "@data.name",
+          "path": "@data.slug",
           "type": "variable"
         }
       ]
