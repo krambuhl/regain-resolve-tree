@@ -110,7 +110,7 @@
               "name": "data",
               "data": [
                 {
-                  "path": "color",
+                  "path": "@item",
                   "type": "variable"
                 }
               ]
@@ -126,7 +126,7 @@
               "name": "data",
               "data": [
                 {
-                  "path": "color.slug",
+                  "path": "@item.slug",
                   "type": "variable"
                 }
               ]
@@ -146,7 +146,7 @@
                       "data": "/colors/"
                     },
                     {
-                      "path": "color.slug",
+                      "path": "@item.slug",
                       "type": "variable"
                     }
                   ]

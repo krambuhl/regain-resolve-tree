@@ -4,25 +4,6 @@
   "attrs": [
     {
       "type": "attr",
-      "name": [
-        {
-          "type": "text",
-          "data": "data-"
-        },
-        {
-          "path": "propName",
-          "type": "variable"
-        }
-      ],
-      "data": [
-        {
-          "path": "valName",
-          "type": "variable"
-        }
-      ]
-    },
-    {
-      "type": "attr",
       "name": "class",
       "data": "block"
     },

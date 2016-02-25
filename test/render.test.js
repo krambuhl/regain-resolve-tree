@@ -8,7 +8,7 @@ const data = require('./data.json');
 
 var output = resolveTree(config.components.get('Test'), data, config);
 
-console.log( JSON.stringify(output, null, 2) );
+console.log( JSON.stringify(output, null, 0) );
 console.log(`-- runtime: ${ +new Date() - start }ms`)
 
 
