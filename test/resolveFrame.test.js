@@ -9,7 +9,7 @@ const defTree = {
   ]
 };
 
-test('resolveFrame(tree, props, config) :: no locals', function(t) {
+test('resolveFrame :: no locals', function(t) {
   t.plan(2);
 
   var res = resolveFrame(defTree, { title: 'world' });
@@ -18,7 +18,7 @@ test('resolveFrame(tree, props, config) :: no locals', function(t) {
   t.equal(res[1], 'world');
 });
 
-test('resolveFrame(tree, props, config) :: overwrite locals', function(t) {
+test('resolveFrame :: overwrite locals', function(t) {
   t.plan(2);
 
   var tree = Object.assign({}, defTree, { locals: { title: 'numbers' } });

@@ -9,7 +9,7 @@ const defTree = {
   data: 'value'
 };
 
-test('resolveAttributes(tree, props, config) :: single', function(t) {
+test('resolveAttributes :: single', function(t) {
   t.plan(1);
 
   var res = resolveAttributes([defTree], { min: 10, max: 90 }, config);
@@ -17,7 +17,7 @@ test('resolveAttributes(tree, props, config) :: single', function(t) {
   t.equal(res['data-value'], 'value');
 });
 
-test('resolveAttributes(tree, props, config) :: multi', function(t) {
+test('resolveAttributes :: multi', function(t) {
   t.plan(2);
 
   var tree = Object.assign({}, defTree, { name: 'data-redact' });
@@ -27,7 +27,7 @@ test('resolveAttributes(tree, props, config) :: multi', function(t) {
   t.equal(res['data-redact'], 'value');
 });
 
-test('resolveAttributes(tree, props, config) :: complex', function(t) {
+test('resolveAttributes :: complex', function(t) {
   t.plan(1);
 
   var tree = Object.assign({}, defTree, { 

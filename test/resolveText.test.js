@@ -8,7 +8,7 @@ const defTree = {
   data: 'default'
 };
 
-test('resolveText(tree, props) :: simple', function(t) {
+test('resolveText :: simple', function(t) {
   t.plan(1);
 
   var tree = Object.assign({}, defTree);
@@ -17,7 +17,7 @@ test('resolveText(tree, props) :: simple', function(t) {
   t.equal(res, 'default');
 });
 
-test('resolveText(tree, props) :: array mixed', function(t) {
+test('resolveText :: array mixed', function(t) {
   t.plan(1);
 
   var tree = Object.assign({}, defTree, {
@@ -32,7 +32,7 @@ test('resolveText(tree, props) :: array mixed', function(t) {
   t.equal(res, 'name: hello world');
 });
 
-test('resolveText(tree, props) :: array big', function(t) {
+test('resolveText :: array big', function(t) {
   t.plan(1);
 
   var tree = Object.assign({}, defTree, {

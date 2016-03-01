@@ -9,7 +9,7 @@ const defTree = {
   data: 'value'
 };
 
-test('resolveAttribute(tree, props, config) :: name/data strings', function(t) {
+test('resolveAttribute :: name/data strings', function(t) {
   t.plan(3);
 
   var tree = Object.assign({}, defTree);
@@ -20,7 +20,7 @@ test('resolveAttribute(tree, props, config) :: name/data strings', function(t) {
   t.equal(res.data, 'value');
 });
 
-test('resolveAttribute(tree, props, config) :: name array', function(t) {
+test('resolveAttribute :: name array', function(t) {
   t.plan(1);
 
   var tree = Object.assign({}, defTree, { name: [
@@ -34,7 +34,7 @@ test('resolveAttribute(tree, props, config) :: name array', function(t) {
   t.equal(res.name, '10 - 90');
 });
 
-test('resolveAttribute(tree, props, config) :: data array (name not data)', function(t) {
+test('resolveAttribute :: data array (name not data)', function(t) {
   t.plan(1);
 
   var tree = Object.assign({}, defTree, { data: [
@@ -49,7 +49,7 @@ test('resolveAttribute(tree, props, config) :: data array (name not data)', func
 });
 
 
-test('resolveAttribute(tree, props, config) :: data array (name is data)', function(t) {
+test('resolveAttribute :: data array (name is data)', function(t) {
   t.plan(3);
 
   var tree = Object.assign({}, defTree, { 
