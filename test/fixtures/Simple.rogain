@@ -1,3 +1,0 @@
-<div class="{mooger} block" data-{key}={keys|join}>
-  <Children />
-</div>
