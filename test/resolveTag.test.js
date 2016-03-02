@@ -76,7 +76,7 @@ test('resolveTag :: children attr fall-through', function(t) {
   t.equal(res.name, 'section');
   
   t.equal(res.attrs['data-key'], 'da-value');
-  t.equal(res.children[0], 'da-value');
+  t.equal(res.children, 'da-value');
 });
 
 test('resolveTag :: deep children attr fall-through', function(t) {
@@ -100,7 +100,7 @@ test('resolveTag :: deep children attr fall-through', function(t) {
   t.equal(res.name, 'section');
   
   t.equal(res.attrs['data-key'], 'da-value');
-  t.equal(res.children[0].type, 'tag');
-  t.equal(res.children[0].name, 'div');
-  t.equal(res.children[0].children[0], 'da-value');
+  t.equal(res.children.type, 'tag');
+  t.equal(res.children.name, 'div');
+  t.equal(res.children.children, 'da-value');
 });

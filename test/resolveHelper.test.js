@@ -35,14 +35,14 @@ test('resolveHelper :: full shabang', function(t) {
 
   t.plan(8);
 
-  t.equal(res[0][0].type, 'tag');
-  t.equal(res[0][0].name, 'div');
-  t.equal(res[0][0].children[0], '1');
-  t.equal(res[0][0].children[1], '@da-item');
-  t.equal(res[1][0].children[0], '2');
-  t.equal(res[1][0].children[1], '@da-item');
-  t.equal(res[2][0].children[0], '3');
-  t.equal(res[2][0].children[1], '@da-item');
+  t.equal(res[0].type, 'tag');
+  t.equal(res[0].name, 'div');
+  t.equal(res[0].children[0], '1');
+  t.equal(res[0].children[1], '@da-item');
+  t.equal(res[1].children[0], '2');
+  t.equal(res[1].children[1], '@da-item');
+  t.equal(res[2].children[0], '3');
+  t.equal(res[2].children[1], '@da-item');
 });
 
 test('resolveHelper :: not found', function(t) {
