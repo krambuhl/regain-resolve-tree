@@ -43,7 +43,7 @@ __Input Rogain Template__
 __Friend Component__
 
 ```html
-<h2>{@data.lastName}, {@data.firstName}</h2>
+<h2>{@attrs.data.lastName}, {@attrs.data.firstName}</h2>
 ```
 
 __Input Data Object__

@@ -1,6 +1,6 @@
 {
   "type": "tag",
-  "tagName": "div",
+  "name": "div",
   "attrs": [
     {
       "type": "attr",
@@ -16,7 +16,7 @@
           "data": "#"
         },
         {
-          "path": "@data.hex",
+          "path": "@attrs.data.hex",
           "type": "variable"
         }
       ]
@@ -27,7 +27,7 @@
       "type": "text",
       "data": [
         {
-          "path": "@data.slug",
+          "path": "@attrs.data.slug",
           "type": "variable"
         }
       ]

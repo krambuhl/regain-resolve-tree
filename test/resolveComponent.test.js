@@ -1,6 +1,6 @@
 var config = require('./_config');
 var test = require('tape');
-var resolveComponent = require('../dist/resolveComponent');
+var resolveComponent = require('../dist/resolveComponent').default;
 
 
 const defComp = { type: 'component', name: 'Heading' };

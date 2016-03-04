@@ -1,6 +1,6 @@
 {
   "type": "tag",
-  "tagName": "div",
+  "name": "div",
   "children": [
     {
       "type": "component",
@@ -18,7 +18,12 @@
         },
         {
           "type": "attr",
-          "name": "data",
+          "name": [
+            {
+              "path": "data",
+              "type": "variable"
+            }
+          ],
           "data": [
             {
               "path": "colors.0",
@@ -49,12 +54,6 @@
               "data": [
                 {
                   "path": "colors.1",
-                  "filters": [
-                    {
-                      "type": "filter",
-                      "name": "last"
-                    }
-                  ],
                   "type": "variable"
                 }
               ]
@@ -63,7 +62,7 @@
         },
         {
           "type": "tag",
-          "tagName": "a",
+          "name": "a",
           "attrs": [
             {
               "type": "attr",
@@ -81,7 +80,7 @@
       ]
     },
     {
-      "type": "helper",
+      "type": "component",
       "name": "Each",
       "attrs": [
         {
@@ -110,7 +109,7 @@
               "name": "data",
               "data": [
                 {
-                  "path": "@item",
+                  "path": "color",
                   "type": "variable"
                 }
               ]
@@ -126,7 +125,7 @@
               "name": "data",
               "data": [
                 {
-                  "path": "@item.slug",
+                  "path": "color.slug",
                   "type": "variable"
                 }
               ]
@@ -135,7 +134,7 @@
           "children": [
             {
               "type": "tag",
-              "tagName": "a",
+              "name": "a",
               "attrs": [
                 {
                   "type": "attr",
@@ -146,7 +145,7 @@
                       "data": "/colors/"
                     },
                     {
-                      "path": "@item.slug",
+                      "path": "color.slug",
                       "type": "variable"
                     }
                   ]
@@ -164,7 +163,7 @@
       ]
     },
     {
-      "type": "script",
+      "type": "tag",
       "name": "script",
       "attrs": [
         {
@@ -180,7 +179,7 @@
       ],
       "children": [
         {
-          "data": "\n    function hello(str) { }\n  ",
+          "data": "function hello(str) { }",
           "type": "text"
         }
       ]

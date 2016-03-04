@@ -1,10 +1,13 @@
 const Config = require('rogain-config');
 
-module.exports = new Config({
-  helpers: require('rogain-core-helpers'),
-  components: {
-    Test: require('./fixtures/out/Test.json'),
-    TestBlock: require('./fixtures/out/TestBlock.json'),
-    TestComponent: require('./fixtures/out/TestComponent.json'),
-  }
+var config = new Config();
+
+config.registerComponent(require('rogain-core-helpers'));
+
+config.registerComponent({
+  Test: require('./fixtures/Test.json'),
+  TestBlock: require('./fixtures/TestBlock.json'),
+  TestComponent: require('./fixtures/TestComponent.json'),
 });
+
+module.exports = config;

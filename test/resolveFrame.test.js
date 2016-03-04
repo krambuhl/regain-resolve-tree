@@ -27,3 +27,14 @@ test('resolveFrame :: overwrite locals', function(t) {
   t.equal(res[0], 'hello ');
   t.equal(res[1], 'numbers');
 });
+
+test('resolveFrame :: unwrap single array', function(t) {
+  t.plan(1);
+
+  var tree = Object.assign({}, defTree, { locals: { title: 'numbers' } });
+  tree.children.shift()
+  var res = resolveFrame(tree, { title: 'world' });
+
+  t.equal(res, 'numbers');
+});
+

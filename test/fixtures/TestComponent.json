@@ -1,0 +1,27 @@
+{
+  "type": "component",
+  "name": "Box",
+  "attrs": [
+    {
+      "type": "attr",
+      "name": "class",
+      "data": "heavy"
+    },
+    {
+      "type": "attr",
+      "name": "data-key",
+      "data": [
+        {
+          "path": "key",
+          "type": "variable"
+        }
+      ]
+    }
+  ],
+  "children": [
+    {
+      "type": "component",
+      "name": "Children"
+    }
+  ]
+}
