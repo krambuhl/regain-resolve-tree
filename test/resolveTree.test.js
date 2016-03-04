@@ -19,6 +19,4 @@ test('resolveTree', function(t) {
 
   t.equal(res.type, 'tag');
   t.equal(res.name, 'div');
-
-  console.log(JSON.stringify(res, null, 2))
 });

@@ -59,8 +59,6 @@ test('resolveAttribute :: data array (name is data)', function(t) {
   
   var res = resolveAttribute(tree, { set: [1,2,3] }, config);
 
-  console.log('res', res)
-
   t.equal(res.data[0], 1);
   t.equal(res.data[1], 2);
   t.equal(res.data[2], 3);
