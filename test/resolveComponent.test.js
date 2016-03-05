@@ -9,13 +9,13 @@ const defChild = { type: 'tag', name: 'div' }
 const defVar = { type: 'variable', path: '@item' }
 const defAttr = { type: 'attr', name: 'data', data: 'da-value' };
 
-config.components.register('Heading', Object.assign({}, defChild, {
+config.registerComponent('Heading', Object.assign({}, defChild, {
   name: 'h3',
   attrs: [
     { type: 'attr', name: 'class', data: 'heading' }
   ],
   children: [
-    { type: 'helper', name: 'Children' }
+    { type: 'component', name: 'Children' }
   ]
 }))
 
@@ -42,27 +42,25 @@ test('resolveComponent :: full shabang', function(t) {
     ]
   });
 
-  var res = resolveComponent(tree, { 
-    numbers: [1, 2, 3]
-  }, config);
+  var res = resolveComponent(tree, { numbers: [1, 2, 3] }, config);
 
-  t.plan(1);
+  t.plan(12);
 
   t.equal(res.type, 'tag');
-  // t.equal(res.name, 'h2');
+  t.equal(res.name, 'h2');
 
-  // t.equal(res.attrs.class, 'heading small');
-  // t.equal(res.attrs['data-burger'], 'cheese');
+  t.equal(res.attrs.class, 'heading small');
+  t.equal(res.attrs['data-burger'], 'cheese');
 
-  // t.equal(res.children[0].type, 'tag');
-  // t.equal(res.children[0].name, 'div');
-  // t.equal(res.children[0].children[0], '2');
-  // t.equal(res.children[0].children[1], 'cheese');
+  t.equal(res.children[0].type, 'tag');
+  t.equal(res.children[0].name, 'div');
+  t.equal(res.children[0].children[0], '2');
+  t.equal(res.children[0].children[1], 'cheese');
 
-  // t.equal(res.children[0].type, 'tag');
-  // t.equal(res.children[0].name, 'div');
-  // t.equal(res.children[1].children[0], '3');
-  // t.equal(res.children[1].children[1], 'h2');
+  t.equal(res.children[0].type, 'tag');
+  t.equal(res.children[0].name, 'div');
+  t.equal(res.children[1].children[0], '3');
+  t.equal(res.children[1].children[1], 'h2');
 });
 
 test('resolveComponent :: not found', function(t) {

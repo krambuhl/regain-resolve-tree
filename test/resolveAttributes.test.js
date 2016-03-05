@@ -10,19 +10,21 @@ const defTree = {
 };
 
 test('resolveAttributes :: single', function(t) {
-  t.plan(1);
+  t.plan(2);
 
   var res = resolveAttributes([defTree], { min: 10, max: 90 }, config);
 
+  t.equal(Object.keys(res).length, 1);
   t.equal(res['data-value'], 'value');
 });
 
 test('resolveAttributes :: multi', function(t) {
-  t.plan(2);
+  t.plan(3);
 
   var tree = Object.assign({}, defTree, { name: 'data-redact' });
   var res = resolveAttributes([defTree, tree], { min: 10, max: 90 }, config);
 
+  t.equal(Object.keys(res).length, 2);
   t.equal(res['data-value'], 'value');
   t.equal(res['data-redact'], 'value');
 });
