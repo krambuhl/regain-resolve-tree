@@ -31,10 +31,6 @@
           "type": "variable"
         },
         {
-          "type": "text",
-          "data": " - "
-        },
-        {
           "path": "@index",
           "type": "variable"
         }

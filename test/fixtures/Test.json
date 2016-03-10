@@ -41,6 +41,11 @@
           "type": "attr",
           "name": "id",
           "data": "colors"
+        }, 
+        {
+          "type": "attr",
+          "name": "class",
+          "data": "box"
         }
       ],
       "children": [

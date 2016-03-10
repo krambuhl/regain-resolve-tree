@@ -1,6 +1,6 @@
 <div>
   <TestBlock tagName={tag} {data}={colors.0} />
-  <TestComponent id="colors">
+  <TestComponent id="colors" class="box">
     <TestBlock data={colors.1} />
     <a href="/colors">Read More</a>
   </TestComponent>

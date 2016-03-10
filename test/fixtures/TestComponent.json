@@ -5,7 +5,7 @@
     {
       "type": "attr",
       "name": "class",
-      "data": "heavy"
+      "data": "component"
     }
   ],
   "children": [
