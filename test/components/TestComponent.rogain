@@ -1,1 +1,1 @@
-<Box class="heavy" data-key={key}><Children /></Box>
+<div class="heavy"><Children /></div>

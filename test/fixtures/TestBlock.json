@@ -29,8 +29,16 @@
         {
           "path": "@attrs.data.slug",
           "type": "variable"
+        },
+        {
+          "type": "text",
+          "data": " - "
+        },
+        {
+          "path": "@index",
+          "type": "variable"
         }
       ]
     }
   ]
-}
+} 

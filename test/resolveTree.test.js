@@ -7,6 +7,7 @@ test('resolveTree', function(t) {
   t.plan(2);
 
   var res = resolveTree(config.components.get('Test'), {
+    data: 'data',
     tag: 'section',
     colors: [
       { hex: 'f00', slug: 'red' },
@@ -19,4 +20,6 @@ test('resolveTree', function(t) {
 
   t.equal(res.type, 'tag');
   t.equal(res.name, 'div');
+
+  console.log(JSON.stringify(res, null, 2))
 });

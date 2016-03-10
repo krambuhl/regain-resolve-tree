@@ -43,7 +43,9 @@ __Input Rogain Template__
 __Friend Component__
 
 ```html
-<h2>{@attrs.data.lastName}, {@attrs.data.firstName}</h2>
+<Frame friend={@attrs.data}>
+  <h2>{friend.lastName}, {friend.firstName}</h2>
+</Frame>
 ```
 
 __Input Data Object__
@@ -61,12 +63,8 @@ __Output Tree__
 
 ```js
 [
-  { type: 'tag', name: 'h2', children: [
-    { type: 'text', data: 'Forester, Ben' }
-  ]},
-  { type: 'tag', name: 'h2', children: [
-    { type: 'text', data: 'Forman, Larry' }
-  ]}
+  { type: 'tag', name: 'h2', children: ['Forester, Ben'] },
+  { type: 'tag', name: 'h2', children: ['Forman, Larry'] }
 ]
 ```
 
