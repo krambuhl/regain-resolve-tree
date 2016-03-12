@@ -30,7 +30,7 @@ ___config___
 
 ### Output
 
-The output of the resolveTree function will be a more basic tree.
+The output of the resolveTree function will be a basic dom tree.
 
 __Input Rogain Template__
 
@@ -43,9 +43,7 @@ __Input Rogain Template__
 __Friend Component__
 
 ```html
-<Frame friend={@attrs.data}>
-  <h2>{friend.lastName}, {friend.firstName}</h2>
-</Frame>
+<h2>{@attrs.data.lastName}, {@attrs.data.firstName}</h2>
 ```
 
 __Input Data Object__
