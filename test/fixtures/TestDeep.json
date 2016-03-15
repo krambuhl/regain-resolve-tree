@@ -1,0 +1,16 @@
+{
+  "type": "component",
+  "name": "Box",
+  "children": [
+    {
+      "type": "tag",
+      "name": "div",
+      "children": [
+        {
+          "type": "component",
+          "name": "Children"
+        }
+      ]
+    }
+  ]
+}

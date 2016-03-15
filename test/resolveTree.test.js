@@ -62,3 +62,4 @@ test('resolveTree', function(t, d) {
   t.equal(res.children[3].attrs.src, '/scripts/main.js');
   t.equal(res.children[3].children, 'function hello(str) { }');
 });
+
