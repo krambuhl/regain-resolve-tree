@@ -1,5 +1,6 @@
 var config = require('./_config');
 var test = require('tape');
+var resolveTree = require('../dist/resolveTree');
 var resolveComponent = require('../dist/resolveComponent');
 
 
@@ -9,24 +10,35 @@ const defChild = { type: 'tag', name: 'div' }
 const defVar = { type: 'variable', path: '@item' }
 const defAttr = { type: 'attr', name: 'data', data: 'da-value' };
 
-const Heading = Object.assign({}, defChild, {
+function copy(type, bits) {
+  return Object.assign({}, type, bits);
+}
+
+const Heading = copy(defChild, {
   name: 'h3',
   attrs: [
     { type: 'attr', name: 'class', data: 'heading' },
     { type: 'attr', name: 'data-tag', data: [
-      Object.assign({}, defVar, { path: '@attrs.tagName' })
+      copy(defVar, { path: '@attrs.tagName' })
     ] }
   ],
   children: [
-    { type: 'component', name: 'Children' }
+    copy(defChild, {
+      attrs: [
+        copy(defAttr)
+      ],
+      children: [
+        copy(defComp, { name: 'Children' })
+      ]
+    })
   ]
 });
 
-const Link = Object.assign({}, defChild, {
+const Link = copy(defChild, {
   name: 'a',
   attrs: [
     { type: 'attr', name: 'href', data: [
-      Object.assign({}, defVar, { path: '@attrs.href' })
+      copy(defVar, { path: '@attrs.href' })
     ] }
   ],
   children: [
@@ -34,39 +46,38 @@ const Link = Object.assign({}, defChild, {
   ]
 });
 
-
 test('resolveComponent', function(t) {
-  config.registerComponent('Heading', Heading);
-  config.registerComponent('Link', Link);
+  config.components.register('Heading', Heading);
+  config.components.register('Link', Link);
 
-  var tree = Object.assign({}, defComp, { 
+  var tree = copy(defComp, { 
     attrs: [
-      Object.assign({}, defAttr, { name: 'tagName', data: 'h2' }),
-      Object.assign({}, defAttr, { name: 'class', data: 'small' }),
-      Object.assign({}, defAttr, { name: 'data-burger', data: 'cheese' })
+      copy(defAttr, { name: 'tagName', data: 'h2' }),
+      copy(defAttr, { name: 'class', data: 'small' }),
+      copy(defAttr, { name: 'data-burger', data: 'cheese' })
     ],
     children: [
-      Object.assign({}, defChild, {
+      copy(defChild, {
         children: [
           { type: 'variable', path: 'numbers.1' },
           { type: 'variable', path: '@attrs.data-burger' }
         ]
       }),
-      Object.assign({}, defChild, {
+      copy(defChild, {
         children: [
           { type: 'variable', path: 'numbers.2' },
           { type: 'variable', path: '@attrs.tagName' }
         ]
       }),     
-      Object.assign({}, defComp, {
+      copy(defComp, {
         name: 'Each',
         attrs: [
-          Object.assign({}, defAttr, { name: 'data', data: [
-            Object.assign({}, defVar, { path: 'numbers' })
+          copy(defAttr, { name: 'data', data: [
+            copy(defVar, { path: 'numbers' })
           ] })
         ],
         children: [
-          Object.assign({}, defChild, {
+          copy(defChild, {
             children: [
               { type: 'variable', path: '@index' },
               { type: 'variable', path: '@item' }
@@ -77,14 +88,16 @@ test('resolveComponent', function(t) {
     ]
   });
 
-  // var res = resolveComponent(tree, { numbers: [5, 10, 20], url: 'http://google.com' }, config);
+  var res = resolveTree(tree, { numbers: [5, 10, 20], url: 'http://google.com' }, config);
 
-  t.plan(1); 
-  t.equal(true, true);
-  // t.plan(26);
+  console.log(res)
 
-  // t.equal(res.type, 'tag');
-  // t.equal(res.name, 'h2');
+  // t.plan(1); 
+  // t.equal(true, true);
+  t.plan(2);
+
+  t.equal(res.type, 'tag');
+  t.equal(res.name, 'h2');
 
   // t.equal(res.attrs.class, 'heading small');
   // t.equal(res.attrs['data-burger'], 'cheese');
