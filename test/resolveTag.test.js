@@ -1,17 +1,16 @@
 var config = require('./_config');
+var copy = require('./_copy');
 var test = require('tape');
 var resolveTag = require('../dist/resolveTag');
 
-const defTree = { type: 'tag', name: 'section' };
-const defText = { type: 'text', data: 'some-text' }
-const defChild = { type: 'tag', name: 'div' }
-const defVar = { type: 'variable', path: 'title' }
-const defAttr = { type: 'attr', name: 'data-key', data: 'da-value' };
+const Tree = { type: 'tag', name: 'section' };
+const Var = { type: 'variable', path: 'title' }
+const Attr = { type: 'attr', name: 'data-key', data: 'da-value' };
 
 test('resolveTag :: no attrs/children', function(t) {
   t.plan(2);
 
-  var res = resolveTag(defTree, { }, config);
+  var res = resolveTag(Tree, { }, config);
 
   t.equal(res.type, 'tag');
   t.equal(res.name, 'section');
@@ -20,11 +19,11 @@ test('resolveTag :: no attrs/children', function(t) {
 test('resolveTag :: simple attrs', function(t) {
   t.plan(4);
 
-  var tree = Object.assign({}, defTree, {
+  var tree = copy(Tree, {
     name: 'div',
     attrs: [
-      defAttr,
-      Object.assign({}, defAttr, { name: 'data-none', data: 'nope' })
+      Attr,
+      copy(Attr, { name: 'data-none', data: 'nope' })
     ]
   });
 
@@ -40,11 +39,11 @@ test('resolveTag :: simple attrs', function(t) {
 test('resolveTag :: variable attrs', function(t) {
   t.plan(3);
 
-  var tree = Object.assign({}, defTree, {
+  var tree = copy(Tree, {
     attrs: [
-      Object.assign({}, defAttr, { 
-        name: [Object.assign({}, defVar, { path: 'slug' })], 
-        data: [defVar] 
+      copy(Attr, { 
+        name: [copy(Var, { path: 'slug' })], 
+        data: [Var] 
       })
     ]
   });
@@ -63,10 +62,10 @@ test('resolveTag :: variable attrs', function(t) {
 test('resolveTag :: children attr fall-through', function(t) {
   t.plan(4);
 
-  var tree = Object.assign({}, defTree, {
-    attrs: [ defAttr ],
+  var tree = copy(Tree, {
+    attrs: [ Attr ],
     children: [
-      Object.assign({}, defVar, { path: '@attrs.data-key' })
+      copy(Var, { path: '@attrs.data-key' })
     ]
   });
 
@@ -82,13 +81,13 @@ test('resolveTag :: children attr fall-through', function(t) {
 test('resolveTag :: deep children attr fall-through', function(t) {
   t.plan(6);
 
-  var tree = Object.assign({}, defTree, {
-    attrs: [ defAttr ],
+  var tree = copy(Tree, {
+    attrs: [ Attr ],
     children: [
-      Object.assign({}, defTree, {
+      copy(Tree, {
         name: 'div',
         children: [
-          Object.assign({}, defVar, { path: '@attrs.data-key' })
+          copy(Var, { path: '@attrs.data-key' })
         ]
       })
     ]

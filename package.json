@@ -1,13 +1,12 @@
 {
   "name": "rogain-resolve-tree",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Resolve rogain tree with given data into simple dom tree.",
   "main": "dist/index.js",
   "scripts": {
     "build": "babel lib -d dist",
     "develop": "babel lib -w -d dist",
-    "test": "tape test/*.test.js",
-    "stest": "tape test/resolveComponent.test.js"
+    "test": "tape test/*.test.js"
   },
   "repository": {
     "type": "git",

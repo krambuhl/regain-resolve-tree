@@ -1,10 +1,7 @@
 var config = require('./_config');
+var copy = require('./_copy');
 var test = require('tape');
 var resolveTree = require('../dist/resolveTree');
-
-function copy(type, data) {
-  return Object.assign({}, type, data);
-}
 
 const Component = { type: 'component', name: 'Heading' };
 const Text = { type: 'text', data: 'some-text' }
