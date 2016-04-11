@@ -1,11 +1,13 @@
-const Config = require('rogain-config');
+const Registry = require('rogain-registry');
+const components = new Registry();
 
-var config = new Config(require('rogain-core-bundle'));
-
-config.components.register({
+components.register(require('rogain-core-components'));
+components.register({
   Test: require('./fixtures/Test.json'),
   TestBlock: require('./fixtures/TestBlock.json'),
-  TestComponent: require('./fixtures/TestComponent.json'),
+  TestComponent: require('./fixtures/TestComponent.json')
 });
 
-module.exports = config;
+module.exports = {
+  components: components
+};

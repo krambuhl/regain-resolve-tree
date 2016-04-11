@@ -4,10 +4,10 @@
     <TestBlock data={colors.1} />
     <a href="/colors">Read More</a>
   </TestComponent>
-  <Each data={colors} as="color">
-    <TestBlock data={color} />
-    <Defined data={color.slug}>
-      <a href="/colors/{color.slug}">Read More</a>
+  <Each data={colors}>
+    <TestBlock data={@item} />
+    <Defined data={@item.slug}>
+      <a href="/colors/{@item.slug}">Read More</a>
     </Defined>
   </Each>
   <script src={scripts.main}>

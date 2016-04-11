@@ -123,7 +123,7 @@
         },
         {
           "type": "component",
-          "name": "Defined",
+          "name": "If",
           "attrs": [
             {
               "type": "attr",
@@ -134,6 +134,11 @@
                   "type": "variable"
                 }
               ]
+            },
+            {
+              "type": "attr",
+              "name": "defined",
+              "date": "defined"
             }
           ],
           "children": [

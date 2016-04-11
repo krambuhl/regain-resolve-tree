@@ -11,7 +11,7 @@ import data from './data.json';
 var currentTreeState = resolveTree(tree, data, config);
 ```
 
-## resolveTree(tree, props, config)
+## resolveTree(tree, props, options)
 
 Resolves a rogain tree into a simple dom tree with a given set of properies.  
 
@@ -23,9 +23,9 @@ ___props___
 
 Object. 
 
-___config___
+___options___
 
-[rogain-config](https://github.com/krambuhl/rogain-config) instance.
+`options.components` optional object. defines components used in resolution.
 
 
 ### Output

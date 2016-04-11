@@ -1,6 +1,6 @@
 {
   "name": "rogain-resolve-tree",
-  "version": "0.3.1",
+  "version": "0.4.0",
   "description": "Resolve rogain tree with given data into simple dom tree.",
   "main": "dist/index.js",
   "scripts": {
@@ -28,8 +28,8 @@
     "babel-cli": "^6.4.5",
     "babel-plugin-add-module-exports": "^0.1.2",
     "babel-preset-es2015": "^6.3.13",
-    "rogain-config": "~0.3",
-    "rogain-core-bundle": "git+https://git@github.com/krambuhl/rogain-core-bundle.git",
+    "rogain-core-components": "~1.0",
+    "rogain-registry": "~0.1",
     "tape": "^4.4.0"
   },
   "dependencies": {

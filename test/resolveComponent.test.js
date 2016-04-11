@@ -72,7 +72,7 @@ test('resolveComponent', function(t) {
             ]
           })
         ]
-      }),
+      })
     ]
   });
 
