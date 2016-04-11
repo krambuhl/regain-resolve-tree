@@ -25,7 +25,7 @@ Object.
 
 ___options___
 
-`options.components` optional object. defines components used in resolution.
+`options.components` optional `rogain-registry` instance. defines components used in resolution.
 
 
 ### Output
