@@ -5,7 +5,7 @@
     {
       "type": "component",
       "name": "TestBlock",
-      "attrs": [
+      "attribs": [
         {
           "type": "attr",
           "name": "tagName",
@@ -36,12 +36,12 @@
     {
       "type": "component",
       "name": "TestComponent",
-      "attrs": [
+      "attribs": [
         {
           "type": "attr",
           "name": "id",
           "data": "colors"
-        }, 
+        },
         {
           "type": "attr",
           "name": "class",
@@ -52,7 +52,7 @@
         {
           "type": "component",
           "name": "TestBlock",
-          "attrs": [
+          "attribs": [
             {
               "type": "attr",
               "name": "data",
@@ -68,7 +68,7 @@
         {
           "type": "tag",
           "name": "a",
-          "attrs": [
+          "attribs": [
             {
               "type": "attr",
               "name": "href",
@@ -87,7 +87,7 @@
     {
       "type": "component",
       "name": "Each",
-      "attrs": [
+      "attribs": [
         {
           "type": "attr",
           "name": "data",
@@ -108,7 +108,7 @@
         {
           "type": "component",
           "name": "TestBlock",
-          "attrs": [
+          "attribs": [
             {
               "type": "attr",
               "name": "data",
@@ -124,7 +124,7 @@
         {
           "type": "component",
           "name": "If",
-          "attrs": [
+          "attribs": [
             {
               "type": "attr",
               "name": "data",
@@ -145,7 +145,7 @@
             {
               "type": "tag",
               "name": "a",
-              "attrs": [
+              "attribs": [
                 {
                   "type": "attr",
                   "name": "href",
@@ -175,7 +175,7 @@
     {
       "type": "tag",
       "name": "script",
-      "attrs": [
+      "attribs": [
         {
           "type": "attr",
           "name": "src",

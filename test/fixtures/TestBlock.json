@@ -1,7 +1,7 @@
 {
   "type": "tag",
   "name": "div",
-  "attrs": [
+  "attribs": [
     {
       "type": "attr",
       "name": "class",
@@ -37,4 +37,4 @@
       ]
     }
   ]
-} 
+}

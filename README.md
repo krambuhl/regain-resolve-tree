@@ -13,7 +13,7 @@ var currentTreeState = resolveTree(tree, data, config);
 
 ## resolveTree(tree, props, options)
 
-Resolves a rogain tree into a simple dom tree with a given set of properies.  
+Resolves a rogain tree into a simple dom tree with a given set of properies.
 
 ___tree___
 
@@ -21,7 +21,7 @@ Object in Rogain tree format.
 
 ___props___
 
-Object. 
+Object.
 
 ___options___
 
@@ -49,11 +49,14 @@ __Friend Component__
 __Input Data Object__
 
 ```js
-{ 
-  friends: [
-    { firstName: 'Ben', lastName: 'Forester' },
-    { firstName: 'Larry', lastName: 'Forman' },
-  ]
+{
+  friends: [{
+    firstName: 'Ben',
+    lastName: 'Forester'
+  }, {
+    firstName: 'Larry',
+    lastName: 'Forman'
+  }]
 }
 ```
 
@@ -66,7 +69,7 @@ __Output Tree__
 ]
 ```
 
-## Install 
+## Install
 
 With [npm](https://www.npmjs.com) do:
 

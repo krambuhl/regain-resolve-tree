@@ -1,39 +1,34 @@
-var config = require('./_config.js');
-var copy = require('./_copy');
-var test = require('tape');
+const config = require('./_config.js');
+const copy = require('./_copy');
+const test = require('tape');
 
-var resolveText = require('../dist/resolveText');
+const resolveText = require('../dist/resolveText');
 
 const Text = { type: 'text', data: 'default' };
 
 test('resolveText :: simple', function(t) {
+  const tree = copy(Text);
+  const res = resolveText(tree, { title: 'hello world' });
+
   t.plan(1);
-
-  var tree = copy(Text);
-  var res = resolveText(tree, { title: 'hello world' });
-
   t.equal(res, 'default');
 });
 
 test('resolveText :: array mixed', function(t) {
-  t.plan(1);
-
-  var tree = copy(Text, {
+  const tree = copy(Text, {
     data: [
       { type: 'text', data: 'name: ' },
       { type: 'variable', path: 'title' }
     ]
   });
+  const res = resolveText(tree, { title: 'hello world' });
 
-  var res = resolveText(tree, { title: 'hello world' });
-
+  t.plan(1);
   t.equal(res, 'name: hello world');
 });
 
 test('resolveText :: array big', function(t) {
-  t.plan(1);
-
-  var tree = copy(Text, {
+  const tree = copy(Text, {
     data: [
       { type: 'text', data: 'names: ' },
       { type: 'variable', path: 'name1' },
@@ -41,8 +36,8 @@ test('resolveText :: array big', function(t) {
       { type: 'variable', path: 'name2' }
     ]
   });
+  const res = resolveText(tree, { name1: 'Eddy', name2: 'Eddie' });
 
-  var res = resolveText(tree, { name1: 'Eddy', name2: 'Eddie' });
-
+  t.plan(1);
   t.equal(res, 'names: Eddy and Eddie');
 });

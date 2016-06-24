@@ -1,7 +1,7 @@
-var config = require('./_config');
-var copy = require('./_copy');
-var test = require('tape');
-var resolveComponent = require('../dist/resolveComponent');
+const config = require('./_config');
+const copy = require('./_copy');
+const test = require('tape');
+const resolveComponent = require('../dist/resolveComponent');
 
 const Component = { type: 'component', name: 'Heading' };
 const Tag = { type: 'tag', name: 'div' };
@@ -10,26 +10,35 @@ const Attr = { type: 'attr', name: 'data', data: 'da-value' };
 
 const Heading = copy(Tag, {
   name: 'h3',
-  attrs: [
-    { type: 'attr', name: 'class', data: 'heading' },
-    { type: 'attr', name: 'data-tag', data: [
-      copy(Var, { path: '@attrs.tagName' })
-    ] }
+  attribs: [
+    copy(Attr, {
+      name: 'class',
+      data: 'heading'
+    }),
+    copy(Attr, {
+      name: 'data-tag',
+      data: [
+        copy(Var, { path: '@attrs.tagName' })
+      ]
+    })
   ],
   children: [
-    { type: 'component', name: 'Children' }
+    copy(Component, { name: 'Children' })
   ]
 });
 
 const Link = copy(Tag, {
   name: 'a',
-  attrs: [
-    { type: 'attr', name: 'href', data: [
-      copy(Var, { path: '@attrs.href' })
-    ] }
+  attribs: [
+    copy(Attr, {
+      name: 'href',
+      data: [
+        copy(Var, { path: '@attrs.href' })
+      ]
+    })
   ],
   children: [
-    { type: 'component', name: 'Children' }
+    copy(Component, { name: 'Children' })
   ]
 });
 
@@ -38,8 +47,8 @@ test('resolveComponent', function(t) {
   config.components.register('Heading', Heading);
   config.components.register('Link', Link);
 
-  var tree = copy(Component, { 
-    attrs: [
+  const tree = copy(Component, {
+    attribs: [
       copy(Attr, { name: 'tagName', data: 'h2' }),
       copy(Attr, { name: 'class', data: 'small' }),
       copy(Attr, { name: 'data-burger', data: 'cheese' })
@@ -47,28 +56,31 @@ test('resolveComponent', function(t) {
     children: [
       copy(Tag, {
         children: [
-          { type: 'variable', path: 'numbers.1' },
-          { type: 'variable', path: '@attrs.data-burger' }
+          copy(Var, { path: 'numbers.1' }),
+          copy(Var, { path: '@attrs.data-burger' })
         ]
       }),
       copy(Tag, {
         children: [
-          { type: 'variable', path: 'numbers.2' },
-          { type: 'variable', path: '@attrs.tagName' }
+          copy(Var, { path: 'numbers.2' }),
+          copy(Var, { path: '@attrs.tagName' })
         ]
-      }),     
+      }),
       copy(Component, {
         name: 'Each',
-        attrs: [
-          copy(Attr, { name: 'data', data: [
-            copy(Var, { path: 'numbers' })
-          ] })
+        attribs: [
+          copy(Attr, {
+            name: 'data',
+            data: [
+              copy(Var, { path: 'numbers' })
+            ]
+          })
         ],
         children: [
           copy(Tag, {
             children: [
-              { type: 'variable', path: '@index' },
-              { type: 'variable', path: '@item' }
+              copy(Var, { path: '@index' }),
+              copy(Var, { path: '@item' })
             ]
           })
         ]
@@ -76,17 +88,22 @@ test('resolveComponent', function(t) {
     ]
   });
 
-  var res = resolveComponent(tree, { numbers: [5, 10, 20], url: 'http://google.com' }, config);
+  const data = {
+    numbers: [5, 10, 20],
+    url: 'http://google.com'
+  };
+
+  const res = resolveComponent(tree, data, config);
 
   t.plan(26);
 
   t.equal(res.type, 'tag');
   t.equal(res.name, 'h2');
 
-  t.equal(res.attrs.class, 'heading small');
-  t.equal(res.attrs['data-burger'], 'cheese');
-  t.equal(res.attrs['data-tag'], 'h2');
-  t.equal(res.attrs.tagName === undefined, true);
+  t.equal(res.attribs.class, 'heading small');
+  t.equal(res.attribs['data-burger'], 'cheese');
+  t.equal(res.attribs['data-tag'], 'h2');
+  t.equal(res.attribs.tagName === undefined, true);
 
   t.equal(res.children[0].type, 'tag');
   t.equal(res.children[0].name, 'div');
@@ -97,6 +114,8 @@ test('resolveComponent', function(t) {
   t.equal(res.children[1].name, 'div');
   t.equal(res.children[1].children[0], '20');
   t.equal(res.children[1].children[1], 'h2');
+
+  console.log(JSON.stringify(res, null, 2))
 
   t.equal(res.children[2][0].type, 'tag');
   t.equal(res.children[2][0].name, 'div');

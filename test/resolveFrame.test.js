@@ -1,6 +1,6 @@
-var test = require('tape');
-var copy = require('./_copy');
-var resolveFrame = require('../dist/resolveFrame');
+const test = require('tape');
+const copy = require('./_copy');
+const resolveFrame = require('../dist/resolveFrame');
 
 const Frame = {
   type: 'frame',
@@ -11,31 +11,27 @@ const Frame = {
 };
 
 test('resolveFrame :: no locals', function(t) {
+  const res = resolveFrame(Frame, { title: 'world' });
+
   t.plan(2);
-
-  var res = resolveFrame(Frame, { title: 'world' });
-
   t.equal(res[0], 'hello ');
   t.equal(res[1], 'world');
 });
 
 test('resolveFrame :: overwrite locals', function(t) {
+  const tree = copy(Frame, { locals: { title: 'numbers' } });
+  const res = resolveFrame(tree, { title: 'world' });
+
   t.plan(2);
-
-  var tree = copy(Frame, { locals: { title: 'numbers' } });
-  var res = resolveFrame(tree, { title: 'world' });
-
   t.equal(res[0], 'hello ');
   t.equal(res[1], 'numbers');
 });
 
 test('resolveFrame :: unwrap single array', function(t) {
+  let tree = copy(Frame, { locals: { title: 'numbers' } });
+  tree.children.shift();
+  const res = resolveFrame(tree, { title: 'world' });
+
   t.plan(1);
-
-  var tree = copy(Frame, { locals: { title: 'numbers' } });
-  tree.children.shift()
-  var res = resolveFrame(tree, { title: 'world' });
-
   t.equal(res, 'numbers');
 });
-
