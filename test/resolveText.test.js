@@ -1,10 +1,9 @@
+const test = require('tape');
 const config = require('./_config.js');
 const copy = require('./_copy');
-const test = require('tape');
+const { Text } = require('./_types');
 
 const resolveText = require('../dist/resolveText');
-
-const Text = { type: 'text', data: 'default' };
 
 test('resolveText :: simple', function(t) {
   const tree = copy(Text);

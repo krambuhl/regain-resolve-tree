@@ -1,10 +1,9 @@
 const config = require('./_config.js');
 const copy = require('./_copy');
+const { Attr } = require('./_types');
 const test = require('tape');
 
 const resolveAttribute = require('../dist/resolveAttribute');
-
-const Attr = { type: 'attr', name: 'default', data: 'value' };
 
 test('resolveAttribute :: name/data strings', function(t) {
   const tree = copy(Attr, {});

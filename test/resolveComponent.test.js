@@ -1,12 +1,8 @@
 const config = require('./_config');
 const copy = require('./_copy');
 const test = require('tape');
+const { Component, Tag, Var, Attr } = require('./_types');
 const resolveComponent = require('../dist/resolveComponent');
-
-const Component = { type: 'component', name: 'Heading' };
-const Tag = { type: 'tag', name: 'div' };
-const Var = { type: 'variable', path: '@item' };
-const Attr = { type: 'attr', name: 'data', data: 'da-value' };
 
 const Heading = copy(Tag, {
   name: 'h3',
@@ -114,8 +110,6 @@ test('resolveComponent', function(t) {
   t.equal(res.children[1].name, 'div');
   t.equal(res.children[1].children[0], '20');
   t.equal(res.children[1].children[1], 'h2');
-
-  console.log(JSON.stringify(res, null, 2))
 
   t.equal(res.children[2][0].type, 'tag');
   t.equal(res.children[2][0].name, 'div');

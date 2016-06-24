@@ -8,7 +8,7 @@ Resolve rogain tree with given data into simple dom tree.  The output dom tree i
 import tree from './template.json';
 import data from './data.json';
 
-var currentTreeState = resolveTree(tree, data, config);
+const currentTreeState = resolveTree(tree, data, config);
 ```
 
 ## resolveTree(tree, props, options)
@@ -43,7 +43,7 @@ __Input Rogain Template__
 __Friend Component__
 
 ```html
-<h2>{@attrs.data.lastName}, {@attrs.data.firstName}</h2>
+<h2 class="friend">{@attrs.data.firstName} {@attrs.data.lastName}</h2>
 ```
 
 __Input Data Object__
@@ -63,10 +63,17 @@ __Input Data Object__
 __Output Tree__
 
 ```js
-[
-  { type: 'tag', name: 'h2', children: ['Forester, Ben'] },
-  { type: 'tag', name: 'h2', children: ['Forman, Larry'] }
-]
+[{
+  type: 'tag',
+  name: 'h2',
+  attribs: { class: 'friend' },
+  children: ['Ben Forester']
+}, {
+  type: 'tag',
+  name: 'h2',
+  attribs: { class: 'friend' },
+  children: ['Larry Forman']
+}]
 ```
 
 ## Install

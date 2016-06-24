@@ -1,8 +1,7 @@
 const test = require('tape');
 const copy = require('./_copy');
+const { Var } = require('./_types');
 const resolveVariable = require('../dist/resolveVariable');
-
-const Var = { type: 'variable' };
 
 test('resolveVariable :: simple', function(t) {
   const tree = copy(Var, { path: 'title' });
