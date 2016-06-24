@@ -6,7 +6,7 @@ const resolveTag = require('../dist/resolveTag');
 
 
 test('resolveTag :: no attrs/children', function(t) {
-  const res = resolveTag(Tree, { }, config);
+  const res = resolveTag(Tree(), { }, config);
 
   t.plan(2);
   t.equal(res.type, 'tag');
@@ -14,11 +14,11 @@ test('resolveTag :: no attrs/children', function(t) {
 });
 
 test('resolveTag :: simple attrs', function(t) {
-  const tree = copy(Tree, {
+  const tree = Tree({
     name: 'div',
     attribs: [
       Attr,
-      copy(Attr, { name: 'data-none', data: 'nope' })
+      Attr({ name: 'data-none', data: 'nope' })
     ]
   });
   const res = resolveTag(tree, { }, config);
@@ -31,10 +31,10 @@ test('resolveTag :: simple attrs', function(t) {
 });
 
 test('resolveTag :: variable attrs', function(t) {
-  const tree = copy(Tree, {
+  const tree = Tree({
     attribs: [
-      copy(Attr, {
-        name: [copy(Var, { path: 'slug' })],
+      Attr({
+        name: [Var({ path: 'slug' })],
         data: [Var]
       })
     ]
@@ -51,10 +51,10 @@ test('resolveTag :: variable attrs', function(t) {
 });
 
 test('resolveTag :: children attr fall-through', function(t) {
-  const tree = copy(Tree, {
+  const tree = Tree({
     attribs: [ Attr ],
     children: [
-      copy(Var, { path: '@attrs.default' })
+      Var({ path: '@attrs.default' })
     ]
   });
   const res = resolveTag(tree, {  }, config);
@@ -67,13 +67,13 @@ test('resolveTag :: children attr fall-through', function(t) {
 });
 
 test('resolveTag :: deep children attr fall-through', function(t) {
-  const tree = copy(Tree, {
+  const tree = Tree({
     attribs: [ Attr ],
     children: [
-      copy(Tree, {
+      Tree({
         name: 'div',
         children: [
-          copy(Var, { path: '@attrs.default' })
+          Var({ path: '@attrs.default' })
         ]
       })
     ]

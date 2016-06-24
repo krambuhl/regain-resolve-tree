@@ -1,12 +1,10 @@
-const config = require('./_config.js');
-const copy = require('./_copy');
-const { Attr } = require('./_types');
 const test = require('tape');
-
+const config = require('./_config.js');
+const { Var, Text, Attr } = require('./_types');
 const resolveAttribute = require('../dist/resolveAttribute');
 
 test('resolveAttribute :: name/data strings', function(t) {
-  const tree = copy(Attr, {});
+  const tree = Attr();
   const res = resolveAttribute(tree, { min: 10, max: 90 }, config);
 
   t.plan(3);
@@ -16,11 +14,11 @@ test('resolveAttribute :: name/data strings', function(t) {
 });
 
 test('resolveAttribute :: name array', function(t) {
-  const tree = copy(Attr, {
+  const tree = Attr({
     name: [
-      { type: 'variable', path: 'min' },
-      { type: 'text', data: ' - ' },
-      { type: 'variable', path: 'max' },
+      Var({ path: 'min' }),
+      Text({ data: ' - ' }),
+      Var({ path: 'max' })
     ]
   });
   const res = resolveAttribute(tree, { min: 10, max: 90 }, config);
@@ -30,11 +28,11 @@ test('resolveAttribute :: name array', function(t) {
 });
 
 test('resolveAttribute :: data array (name not data)', function(t) {
-  const tree = copy(Attr, {
+  const tree = Attr({
     data: [
-      { type: 'variable', path: 'min' },
-      { type: 'text', data: ' - ' },
-      { type: 'variable', path: 'max' },
+      Var({ path: 'min' }),
+      Text({ data: ' - ' }),
+      Var({ path: 'max' })
     ]
   });
   const res = resolveAttribute(tree, { min: 10, max: 90 }, config);
@@ -45,9 +43,11 @@ test('resolveAttribute :: data array (name not data)', function(t) {
 
 
 test('resolveAttribute :: data array (name is data)', function(t) {
-  const tree = copy(Attr, {
+  const tree = Attr({
     name: 'data',
-    data: [{ type: 'variable', path: 'set' }]
+    data: [
+      Var({ path: 'set' })
+    ]
   });
   const res = resolveAttribute(tree, { set: [1,2,3] }, config);
 

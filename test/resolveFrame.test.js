@@ -1,17 +1,17 @@
 const test = require('tape');
 const copy = require('./_copy');
+const { Frame, Var, Text } = require('./_types');
 const resolveFrame = require('../dist/resolveFrame');
 
-const Frame = {
-  type: 'frame',
+const BaseFrame = Frame({
   children: [
-    { type: 'text', data: 'hello ' },
-    { type: 'variable', path: 'title' }
+    Text({ data: 'hello ' }),
+    Var({ path: 'title' })
   ]
-};
+});
 
 test('resolveFrame :: no locals', function(t) {
-  const res = resolveFrame(Frame, { title: 'world' });
+  const res = resolveFrame(BaseFrame, { title: 'world' });
 
   t.plan(2);
   t.equal(res[0], 'hello ');
@@ -19,7 +19,7 @@ test('resolveFrame :: no locals', function(t) {
 });
 
 test('resolveFrame :: overwrite locals', function(t) {
-  const tree = copy(Frame, { locals: { title: 'numbers' } });
+  const tree = copy(BaseFrame, { locals: { title: 'numbers' } });
   const res = resolveFrame(tree, { title: 'world' });
 
   t.plan(2);
@@ -28,7 +28,7 @@ test('resolveFrame :: overwrite locals', function(t) {
 });
 
 test('resolveFrame :: unwrap single array', function(t) {
-  let tree = copy(Frame, { locals: { title: 'numbers' } });
+  let tree = copy(BaseFrame, { locals: { title: 'numbers' } });
   tree.children.shift();
   const res = resolveFrame(tree, { title: 'world' });
 

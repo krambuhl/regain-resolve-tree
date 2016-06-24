@@ -1,40 +1,39 @@
-const config = require('./_config');
-const copy = require('./_copy');
 const test = require('tape');
+const config = require('./_config');
 const { Component, Tag, Var, Attr } = require('./_types');
 const resolveComponent = require('../dist/resolveComponent');
 
-const Heading = copy(Tag, {
+const Heading = Tag({
   name: 'h3',
   attribs: [
-    copy(Attr, {
+    Attr({
       name: 'class',
       data: 'heading'
     }),
-    copy(Attr, {
+    Attr({
       name: 'data-tag',
       data: [
-        copy(Var, { path: '@attrs.tagName' })
+        Var({ path: '@attrs.tagName' })
       ]
     })
   ],
   children: [
-    copy(Component, { name: 'Children' })
+    Component({ name: 'Children' })
   ]
 });
 
-const Link = copy(Tag, {
+const Link = Tag({
   name: 'a',
   attribs: [
-    copy(Attr, {
+    Attr({
       name: 'href',
       data: [
-        copy(Var, { path: '@attrs.href' })
+        Var({ path: '@attrs.href' })
       ]
     })
   ],
   children: [
-    copy(Component, { name: 'Children' })
+    Component({ name: 'Children' })
   ]
 });
 
@@ -43,40 +42,40 @@ test('resolveComponent', function(t) {
   config.components.register('Heading', Heading);
   config.components.register('Link', Link);
 
-  const tree = copy(Component, {
+  const tree = Component({
     attribs: [
-      copy(Attr, { name: 'tagName', data: 'h2' }),
-      copy(Attr, { name: 'class', data: 'small' }),
-      copy(Attr, { name: 'data-burger', data: 'cheese' })
+      Attr({ name: 'tagName', data: 'h2' }),
+      Attr({ name: 'class', data: 'small' }),
+      Attr({ name: 'data-burger', data: 'cheese' })
     ],
     children: [
-      copy(Tag, {
+      Tag({
         children: [
-          copy(Var, { path: 'numbers.1' }),
-          copy(Var, { path: '@attrs.data-burger' })
+          Var({ path: 'numbers.1' }),
+          Var({ path: '@attrs.data-burger' })
         ]
       }),
-      copy(Tag, {
+      Tag({
         children: [
-          copy(Var, { path: 'numbers.2' }),
-          copy(Var, { path: '@attrs.tagName' })
+          Var({ path: 'numbers.2' }),
+          Var({ path: '@attrs.tagName' })
         ]
       }),
-      copy(Component, {
+      Component({
         name: 'Each',
         attribs: [
-          copy(Attr, {
+          Attr({
             name: 'data',
             data: [
-              copy(Var, { path: 'numbers' })
+              Var({ path: 'numbers' })
             ]
           })
         ],
         children: [
-          copy(Tag, {
+          Tag({
             children: [
-              copy(Var, { path: '@index' }),
-              copy(Var, { path: '@item' })
+              Var({ path: '@index' }),
+              Var({ path: '@item' })
             ]
           })
         ]

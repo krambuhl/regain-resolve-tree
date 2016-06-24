@@ -6,7 +6,7 @@ const { Text } = require('./_types');
 const resolveText = require('../dist/resolveText');
 
 test('resolveText :: simple', function(t) {
-  const tree = copy(Text);
+  const tree = Text();
   const res = resolveText(tree, { title: 'hello world' });
 
   t.plan(1);
@@ -14,10 +14,10 @@ test('resolveText :: simple', function(t) {
 });
 
 test('resolveText :: array mixed', function(t) {
-  const tree = copy(Text, {
+  const tree = Text({
     data: [
-      { type: 'text', data: 'name: ' },
-      { type: 'variable', path: 'title' }
+      Text({ data: 'name: ' }),
+      Var({ path: 'title' })
     ]
   });
   const res = resolveText(tree, { title: 'hello world' });
@@ -27,12 +27,12 @@ test('resolveText :: array mixed', function(t) {
 });
 
 test('resolveText :: array big', function(t) {
-  const tree = copy(Text, {
+  const tree = Text({
     data: [
-      { type: 'text', data: 'names: ' },
-      { type: 'variable', path: 'name1' },
-      { type: 'text', data: ' and ' },
-      { type: 'variable', path: 'name2' }
+      Text({ data: 'names: ' }),
+      Var({ path: 'name1' }),
+      Text({ data: ' and ' }),
+      Var({ path: 'name2' })
     ]
   });
   const res = resolveText(tree, { name1: 'Eddy', name2: 'Eddie' });
