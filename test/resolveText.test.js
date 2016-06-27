@@ -1,7 +1,7 @@
 const test = require('tape');
 const config = require('./_config.js');
 const copy = require('./_copy');
-const { Text } = require('./_types');
+const { Var, Text } = require('./_types');
 
 const resolveText = require('../dist/resolveText');
 

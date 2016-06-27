@@ -17,7 +17,7 @@ test('resolveTag :: simple attrs', function(t) {
   const tree = Tree({
     name: 'div',
     attribs: [
-      Attr,
+      Attr(),
       Attr({ name: 'data-none', data: 'nope' })
     ]
   });
@@ -35,7 +35,7 @@ test('resolveTag :: variable attrs', function(t) {
     attribs: [
       Attr({
         name: [Var({ path: 'slug' })],
-        data: [Var]
+        data: [Var()]
       })
     ]
   });
@@ -52,7 +52,7 @@ test('resolveTag :: variable attrs', function(t) {
 
 test('resolveTag :: children attr fall-through', function(t) {
   const tree = Tree({
-    attribs: [ Attr ],
+    attribs: [ Attr() ],
     children: [
       Var({ path: '@attrs.default' })
     ]
@@ -68,7 +68,7 @@ test('resolveTag :: children attr fall-through', function(t) {
 
 test('resolveTag :: deep children attr fall-through', function(t) {
   const tree = Tree({
-    attribs: [ Attr ],
+    attribs: [ Attr() ],
     children: [
       Tree({
         name: 'div',
